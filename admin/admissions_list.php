@@ -1,7 +1,5 @@
 <?php
 include "../db/config.php";
-include "../includes/top_header.php";
-include "../includes/navbar.php";
 
 $result = $conn->query("SELECT * FROM admissions ORDER BY id DESC");
 ?>
@@ -45,7 +43,6 @@ img{
 
 <div class="table-box">
 
-<a href="admissions_add.php" class="add-btn">+ Add New Admission</a>
 
 <table>
 <thead>
@@ -86,6 +83,11 @@ img{
 </tbody>
 </table>
 
+<a href="dashboard.php"><button>Back Home</button></a>
+<style>
+    a button{
+        background-color: red;
+        padding: 10px 10px;
+    }
+</style>
 </div>
-
-<?php include "../includes/footer.php"; ?>

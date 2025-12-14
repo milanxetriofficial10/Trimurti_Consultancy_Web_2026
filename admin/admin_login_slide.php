@@ -112,6 +112,9 @@ $slides = mysqli_query($conn, "SELECT * FROM login_slide_images ORDER BY id DESC
             <button type="submit" name="upload">Upload Slide</button>
         <?php endif; ?>
     </form>
+    <br>
+    <br>
+    <a href="dashboard.php"><button>Back Home</button></a>
 </div>
 
 <h3>Uploaded Slides</h3>
@@ -134,6 +137,7 @@ $slides = mysqli_query($conn, "SELECT * FROM login_slide_images ORDER BY id DESC
         </td>
     </tr>
     <?php endwhile; ?>
+
 </table>
 </body>
 </html>

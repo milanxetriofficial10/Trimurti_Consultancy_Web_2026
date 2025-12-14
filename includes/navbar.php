@@ -22,8 +22,8 @@
     <div class="nav-menu" id="navMenu">
         <ul class="nav-links">
             <li><a href="../Publics/home.php" class="active">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Service</a></li>
+            <li><a href="about_us.php">About Us</a></li>
+            <li><a href="service.php">Service</a></li>
             <li><a href="../Publics/join_us.php">Join Us</a></li>
             <li><a href="../Publics/contact.php">Contact</a></li>
         </ul>
@@ -31,7 +31,7 @@
         <!-- Right: search + login -->
         <div class="nav-right">
             <input type="search" placeholder="Search">
-            <a href="../Publics/login.php"><button class="login-btn">Login</button></a>
+            <a href="login.php"><button class="login-btn">Login</button></a>
         </div>
     </div>
 </nav>
@@ -89,7 +89,7 @@
 .nav-links a{
     text-decoration:none;
     color:hsla(246,99%,27%,1);
-    font-weight:600;
+    font-weight:500;
     transition:0.3s;
 }
 .nav-links a:hover{

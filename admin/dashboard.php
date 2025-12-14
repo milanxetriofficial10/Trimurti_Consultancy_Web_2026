@@ -30,30 +30,106 @@ $total_categories = $conn->query("SELECT COUNT(*) AS total FROM course_categorie
             background: #eef2f7;
         }
 
-        /* Navbar */
-        .navbar {
-            background: #1a73e8;
-            padding: 12px 25px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+       /* ===== Admin Navbar ===== */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #1a73e8, #1558b0);
+    padding: 14px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
 
-        .navbar .logo img {
-            height: 50px;
-        }
+/* Logo */
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
 
-        .navbar nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
+.navbar .logo img {
+    height: 48px;
+    transition: transform 0.3s ease;
+}
 
-        .navbar nav a:hover {
-            text-decoration: underline;
-        }
+.navbar .logo img:hover {
+    transform: scale(1.05);
+}
+
+/* Nav links container */
+.navbar nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* Links */
+.navbar nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+/* Hover effect */
+.navbar nav a:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateY(-1px);
+}
+
+/* Active page (optional – add class="active") */
+.navbar nav a.active {
+    background: #ffffff;
+    color: #1a73e8;
+}
+
+/* Logout highlight */
+.navbar nav a:last-child {
+    background: #ff4b5c;
+}
+
+.navbar nav a:last-child:hover {
+    background: #e04352;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 992px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+    }
+
+    .navbar nav {
+        margin-top: 12px;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .navbar nav a {
+        font-size: 13px;
+        padding: 7px 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .navbar nav a {
+        width: 100%;
+        text-align: center;
+    }
+}
 
         /* Dashboard container */
         .dashboard-container {
@@ -132,28 +208,28 @@ $total_categories = $conn->query("SELECT COUNT(*) AS total FROM course_categorie
     <!-- Navbar -->
     <div class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="Institute Logo">
+            <img src="../img /468819674_122128647596461823_8355324234216025560_n__1_-removebg-preview.png" alt="Institute Logo">
         </div>
         <nav>
             <a href="index.php">Dashboard</a>
-            <a href="admin_slider.php">Slider</a>
+            <a href="admin_sliders.php">Slider</a>
             <a href="admin_course.php">Courses</a>
             <a href="top_news.php">Top News</a>
-            <a href="course_categories.php">Categories</a>
             <a href="contact_slide.php">Contact slide add</a>
             <a href="admin_login_slide.php">Add Login Slide</a>
-            <a href="admissions_add.php">Add form</a>
             <a href="admissions_list.php">List form</a>
-            <a href="gallery_add.php">Add Images</a>
+            <a href="gallery_add.php">Add Gallery</a>
+            <a href="about_slider.php">Add About Slider</a>
+            <a href="add_about_file.php">Add About Files</a>
+            <a href="Add_manager.php">Add About Manager</a>
             <a href="logout.php">Logout</a>
         </nav>
     </div>
-
     <!-- Dashboard -->
     <div class="dashboard-container">
 
         <h1>Admin Dashboard</h1>
-        <p class="welcome-msg">Welcome, <b><?php echo htmlspecialchars($_SESSION['admin_name']); ?></b> 🌿</p>
+        <p class="welcome-msg">Welcome, <b><?php echo htmlspecialchars($_SESSION['admin_name']); ?></b></p>
 
         <div class="cards">
 
@@ -185,6 +261,7 @@ $total_categories = $conn->query("SELECT COUNT(*) AS total FROM course_categorie
 
     </div>
 
+    <br> <br><br><br><br><br>
     <footer>
         &copy; <?php echo date("Y"); ?> My Institute. All rights reserved.
     </footer>

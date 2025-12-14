@@ -64,3 +64,29 @@ VALUES (
     '$2y$10$mOq4jh2kY8uJ5UkwgZlY4uVdLD7qRXDF3pzv2PaFqHCYmxQEj5J6O',
     'admin'
 );
+
+
+
+CREATE TABLE about_manager (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    manager_name VARCHAR(100),
+    manager_image VARCHAR(200),
+    manager_message TEXT
+);
+CREATE TABLE about_consultancy (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    description TEXT
+);
+CREATE TABLE about_slider (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(150),
+    image VARCHAR(200),
+    button_text VARCHAR(50),
+    button_link VARCHAR(200),
+    status TINYINT DEFAULT 1
+);
+
+ALTER TABLE about_manager
+ADD consultancy_name VARCHAR(150),
+ADD years_active INT,
+ADD students_count INT;

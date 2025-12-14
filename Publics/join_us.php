@@ -50,7 +50,7 @@ $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Join Us</title>
+<title>Join Us </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
