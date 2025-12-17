@@ -1,4 +1,5 @@
 <?php
+include "navbar.php";
 include "../db/config.php";
 
 $result = $conn->query("SELECT * FROM admissions ORDER BY id DESC");

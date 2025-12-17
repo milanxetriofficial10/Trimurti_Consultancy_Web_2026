@@ -1,5 +1,4 @@
-
- .gallery{
+.gallery{
     display:grid;
     grid-template-columns:repeat(4, 1fr); /* 💡 4 cards per row */
     gap:20px;
@@ -27,14 +26,12 @@
     transform:scale(1.08);
 }
 
-/* Tablet */
 @media (max-width: 992px){
     .gallery{
         grid-template-columns:repeat(1, 1fr);
     }
 }
 
-/* Mobile */
 @media (max-width: 600px){
     .gallery{
         grid-template-columns:repeat(1, 1fr);
@@ -92,7 +89,6 @@
     z-index:2;
 }
 
-/* Modal */
 .modal{
     display:none;
     position:fixed;
@@ -131,139 +127,6 @@
     z-index:100000;
 }
 
-
-    .container{max-width:1200px; margin:auto;}
-h2{text-align:center; margin-bottom:30px;}
-.courses-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-.course-card{background:white; border-radius:10px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.1);}
-.course-card img{width:100%; height:180px; object-fit:cover;}
-.course-content{padding:15px;}
-.course-content h3{margin:0 0 10px 0; color:#1f2937;}
-.course-content p{font-size:14px; color:#333; height:60px; overflow:hidden;}
-.course-content a{display:inline-block; margin-top:10px; padding:8px 15px; background:#ff5a27; color:white; border-radius:5px; text-decoration:none;}
-.course-content a:hover{background:#e04352;}
-@media(max-width:768px){.course-content p{height:auto;}}
-
-*{margin:0;padding:0;box-sizing:border-box;}
-
-/* Slider container */
-.slider{
-    position:relative;
-    width:100%;
-    height:60vh; 
-    overflow:hidden;
-}
-
-.slide{
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    opacity:0;
-    transition:opacity 1s ease-in-out;
-}
-
-/* Image with dark overlay */
-.slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-/* Dark overlay on image */
-.slide::after{
-    content:"";
-    position:absolute;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0, 0, 0, 0.62); /* semi-transparent black overlay */
-    z-index:1;
-}
-
-
-/* Active slide */
-.slide.active{
-    opacity:1;
-    z-index:2;
-}
-
-/* Centered text */
-.center-text{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    color: white;
-    z-index:3;
-    padding:0 10px;
-}
-.center-text h1{
-    font-size:2.5rem;
-    margin-bottom:10px;
-}
-.center-text p{
-    font-size:1.1rem;
-    margin-bottom:15px;
-}
-.center-text a{
-    display:inline-block;
-    padding:10px 25px;
-    background: #fa5406ff;
-    color:#000;
-    border-radius:5px;
-    text-decoration:none;
-    font-weight:bold;
-}
-.center-text a:hover{
-    background: #dfccc1ff;
-    color:#000;
-}
-
-/* Dots navigation */
-.dots{
-    position:absolute;
-    bottom:15px;
-    width:100%;
-    text-align:center;
-    z-index:4;
-}
-.dots span{
-    display:inline-block;
-    width:18px;
-    height:4px;
-    margin:0 5px;
-    background: #f7b501ff;
-    border-radius:10%;
-    cursor:pointer;
-    opacity:0.5;
-    transition:opacity 0.3s;
-}
-.dots span.active{
-    opacity:1;
-}
-
-/* Responsive adjustments */
-@media(max-width:1024px){
-    .center-text h1{font-size:2rem;}
-    .center-text p{font-size:1rem;}
-    .slider{height:45vh;}
-}
-@media(max-width:768px){
-    .center-text h1{font-size:1.5rem;}
-    .center-text p{font-size:0.9rem;}
-    .slider{height:40vh;}
-}
-@media(max-width:480px){
-    .center-text h1{font-size:1.2rem;}
-    .center-text p{font-size:0.8rem;}
-    .slider{height:35vh;}
-    .center-text a{padding:8px 18px;font-size:0.9rem;}
-}
-
 .top-news-bar{
     width:100%;
     background: #ff5a27ff;
@@ -276,7 +139,6 @@ h2{text-align:center; margin-bottom:30px;}
     box-sizing:border-box;
 }
 
-/* Important News label pinned to left */
 .top-news-label{
     flex:0 0 auto;
     background:  #ff5a27ff;
@@ -287,7 +149,6 @@ h2{text-align:center; margin-bottom:30px;}
     position:relative;
 }
 
-/* Arrow on the label */
 .top-news-label::after{
     content:"";
     position:absolute;
@@ -299,7 +160,6 @@ h2{text-align:center; margin-bottom:30px;}
     border-left:15px solid  #fc4a13ff;
 }
 
-/* Marquee wrapper takes remaining width */
 .marquee-wrapper{
     flex:1 1 auto;
     overflow:hidden;
@@ -308,7 +168,6 @@ h2{text-align:center; margin-bottom:30px;}
     margin-left:5px;
 }
 
-/* Scrolling news text */
 .marquee{
     display:inline-block;
     white-space:nowrap;
@@ -345,10 +204,10 @@ h2{text-align:center; margin-bottom:30px;}
     }
     .top-news-label{
         margin-bottom:0; 
-        margin-right:10px; /* small spacing to news */
+        margin-right:10px; 
     }
     .marquee-wrapper{
-        width:calc(100% - 100px); /* leave space for label */
+        width:calc(100% - 100px); 
         margin-left:0;
     }
     .marquee a, .marquee span{margin-right:15px;}
@@ -360,58 +219,3 @@ h2{text-align:center; margin-bottom:30px;}
 
 
 
-/* small shine effect */
-.discount-badge::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -40%;
-    width: 40%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.5),
-        transparent
-    );
-    animation: shine 2.5s infinite;
-}
-
-@keyframes shine{
-    0%{left:-40%}
-    100%{left:120%}
-}
-
-/* image stays clean under badge */
-.course-card img{
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 768px){
-    .discount-badge{
-        padding: 6px 12px;
-        font-size: 12px;
-        top: 10px;
-        left: 10px;
-    }
-
-    .course-card img{
-        height: 190px;
-    }
-}
-
-@media (max-width: 480px){
-    .discount-badge{
-        font-size: 11px;
-        padding: 5px 10px;
-    }
-
-    .course-card img{
-        height: 170px;
-    }
-}

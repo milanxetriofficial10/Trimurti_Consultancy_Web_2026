@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-// Optional: If you want to check role (admin/user)
-$role = $_SESSION['role']; 
 // but don't show role to users visually
 include "../includes/top_header.php";
 include "../includes/navbar.php";
@@ -11,10 +9,22 @@ include "../db/config.php";
 $slides = $conn->query("SELECT * FROM slider_images ORDER BY id DESC");
 $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
 $courses = $conn->query("SELECT * FROM courses ORDER BY id DESC");
-$categories = $conn->query("SELECT * FROM course_categories ORDER BY id DESC");
 $result = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
 ?>
+<!-- SEO Meta : Brand Search -->
+<title>Trimurti Educational Consultancy | Nepal</title>
 
+<meta name="description"
+      content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
+
+<meta name="keywords"
+      content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
+
+<meta name="author" content="Trimurti Educational Consultancy">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://yourwebsite.com/">
 
 <div class="top-news-bar">
     <div class="top-news-label">Important News</div>
@@ -35,62 +45,213 @@ $result = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
     </div>
 </div>
 <div class="container">
-    <h2>Our Course Categories</h2>
-    <div class="categories">
-        <?php if($categories->num_rows > 0): ?>
-            <?php while($row = $categories->fetch_assoc()): ?>
-                <div class="category-card">
-                    <img src="../admin/uploads/<?php echo $row['image']; ?>" alt="<?php echo $row['name']; ?>">
-                    <div class="category-content">
-                        <h3><?php echo $row['name']; ?></h3>
-                        <p><?php echo $row['description']; ?></p>
-                    </div>
-                    <div class="category-button">
-                        <a href="courses.php?category=<?php echo $row['id']; ?>">View Courses</a>
-                    </div>
-                </div>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <p style="text-align:center;">No categories found</p>
-        <?php endif; ?>
-    </div>
-</div>
-
-<div class="container">
 <h2>Our Courses</h2>
 <div class="courses-grid">
-<?php if($courses->num_rows>0): ?>
-    <?php while($row=$courses->fetch_assoc()): ?>
-        <div class="course-card">
-            <img src="../admin/uploads/<?php echo $row['image']; ?>">
-            <div class="course-content">
-                <h3><?php echo $row['title']; ?></h3>
-                <p><?php echo $row['description']; ?></p>
-                <?php if($row['button_text'] && $row['button_link']): ?>
-                    <a href="<?php echo $row['button_link']; ?>"><?php echo $row['button_text']; ?></a>
-                <?php endif; ?>
+<?php if($courses->num_rows > 0): ?>
+<?php while($row = $courses->fetch_assoc()): ?>
+    <div class="course-card">
+        <?php if($row['discount'] > 0): ?>
+            <div class="discount-badge">
+                <?php echo $row['discount']; ?>% OFF
             </div>
+        <?php endif; ?>
+
+        <img src="../admin/uploads/<?php echo $row['image']; ?>">
+
+        <div class="course-content">
+            <h3><?php echo $row['title']; ?></h3>
+            <p><?php echo $row['description']; ?></p>
+
+            <?php if($row['button_text'] && $row['button_link']): ?>
+                <a href="<?php echo $row['button_link']; ?>">
+                    <?php echo $row['button_text']; ?>
+                </a>
+            <?php endif; ?>
         </div>
-    <?php endwhile; ?>
+
+    </div>
+
+<?php endwhile; ?>
 <?php else: ?>
     <p style="text-align:center;">No courses found!</p>
 <?php endif; ?>
 </div>
 </div>
 <style>
-        .container{max-width:1200px; margin:auto;}
-h2{text-align:center; margin-bottom:30px;}
-.courses-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
-.course-card{background:white; border-radius:10px; overflow:hidden; box-shadow:0 0 10px rgba(0,0,0,0.1);}
-.course-card img{width:100%; height:180px; object-fit:cover;}
-.course-content{padding:15px;}
-.course-content h3{margin:0 0 10px 0; color:#1f2937;}
-.course-content p{font-size:14px; color:#333; height:60px; overflow:hidden;}
-.course-content a{display:inline-block; margin-top:10px; padding:8px 15px; background:#ff5a27; color:white; border-radius:5px; text-decoration:none;}
-.course-content a:hover{background:#e04352;}
-@media(max-width:768px){.course-content p{height:auto;}}
+  /* ===== Container ===== */
+.container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 60px 20px;
+}
 
-*{margin:0;padding:0;box-sizing:border-box;}
+.container h2 {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: #111;
+}
+
+/* ===== Grid ===== */
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* ===== Card ===== */
+.course-card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 300px;
+    height: 360px;
+    cursor: pointer;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    transform: translateY(0);
+    transition: all 0.45s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 25px 55px rgba(0,0,0,0.18);
+}
+
+/* ===== Image ===== */
+.course-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ===== Dark Overlay ===== */
+.course-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25),
+        rgba(0,0,0,0.65)
+    );
+    z-index: 1;
+    transition: opacity 0.4s ease;
+}
+
+.course-card:hover::before {
+    opacity: 0.85;
+}
+
+/* ===== Discount Badge (on image) ===== */
+.discount-badge {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    z-index: 3;
+    background: linear-gradient(135deg, #fc1a12ff, #ff1e00ff);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 8px 20px rgba(255,107,0,0.45);
+    animation: floatBadge 2.5s ease-in-out infinite;
+}
+
+/* ===== Content on Image ===== */
+.course-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+    animation: fadeUp 0.9s ease both;
+}
+
+.course-content h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.course-content p {
+    font-size: 15px;
+    line-height: 1.7;
+    opacity: 0.92;
+    margin-bottom: 20px;
+}
+
+/* ===== Button on Image ===== */
+.course-content a {
+    align-self: flex-start;
+    padding: 12px 28px;
+    background: #ff6b00;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.35s ease;
+}
+
+.course-content a:hover {
+    background: #fff;
+    color: #111;
+    transform: translateX(6px);
+}
+
+/* ===== Animations ===== */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+    .course-card {
+        height: 320px;
+    }
+
+    .course-content {
+        padding: 22px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .course-content a {
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .course-card {
+        height: 300px;
+    }
+
+    .course-content h3 {
+        font-size: 19px;
+    }
+
+    .course-content p {
+        font-size: 14px;
+    }
+}
 
 .top-news-bar{
     width:100%;
@@ -104,7 +265,6 @@ h2{text-align:center; margin-bottom:30px;}
     box-sizing:border-box;
 }
 
-/* Important News label pinned to left */
 .top-news-label{
     flex:0 0 auto;
     background:  #ff5a27ff;
@@ -115,7 +275,6 @@ h2{text-align:center; margin-bottom:30px;}
     position:relative;
 }
 
-/* Arrow on the label */
 .top-news-label::after{
     content:"";
     position:absolute;
@@ -127,7 +286,6 @@ h2{text-align:center; margin-bottom:30px;}
     border-left:15px solid  #fc4a13ff;
 }
 
-/* Marquee wrapper takes remaining width */
 .marquee-wrapper{
     flex:1 1 auto;
     overflow:hidden;
@@ -136,7 +294,6 @@ h2{text-align:center; margin-bottom:30px;}
     margin-left:5px;
 }
 
-/* Scrolling news text */
 .marquee{
     display:inline-block;
     white-space:nowrap;
@@ -173,101 +330,14 @@ h2{text-align:center; margin-bottom:30px;}
     }
     .top-news-label{
         margin-bottom:0; 
-        margin-right:10px; /* small spacing to news */
+        margin-right:10px; 
     }
     .marquee-wrapper{
-        width:calc(100% - 100px); /* leave space for label */
+        width:calc(100% - 100px); 
         margin-left:0;
     }
     .marquee a, .marquee span{margin-right:15px;}
 }
-
-
-.container{width:90%; margin:auto;}
-h2{text-align:center; margin-bottom:30px; color:#333;}
-
-/* Categories container */
-.categories{display:flex; flex-direction:column; gap:20px;}
-
-/* Individual row card */
-.category-card{
-    display:flex;
-    background:white;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-    transition:0.3s;
-    align-items:center;
-}
-
-.category-card:hover{
-    transform:translateY(-5px);
-}
-
-/* Image on left */
-.category-card img{
-    width:200px;
-    height:140px;
-    object-fit:cover;
-    border-radius:10px 0 0 10px;
-    flex-shrink:0;
-}
-
-/* Text in the middle */
-.category-content{
-    padding:15px 20px;
-    flex:1;
-}
-
-/* Right-side button container */
-.category-button{
-    padding-right:20px;
-}
-
-/* Title and description */
-.category-content h3{
-    margin-bottom:10px;
-    color:#1f2937;
-    font-size:1.4rem;
-}
-
-.category-content p{
-    font-size:0.95rem;
-    color:#555;
-}
-
-/* Button style */
-.category-button a{
-    display:inline-block;
-    padding:10px 20px;
-    background:#1f2937;
-    color:white;
-    border-radius:5px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.category-button a:hover{
-    background:#ff5a27;
-}
-
-/* Responsive adjustments */
-@media(max-width:768px){
-    .category-card{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-    .category-card img{width:100%; height:180px; border-radius:10px 10px 0 0;}
-    .category-content{padding:10px;}
-    .category-button{padding:10px 0;}
-}
-@media(max-width:480px){
-    .category-content h3{font-size:1.2rem;}
-    .category-content p{font-size:0.85rem;}
-    .category-button a{padding:6px 15px;}
-}
-
 </style>
 
 <?php include '../includes/footer.php'; ?>

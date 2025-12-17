@@ -1,4 +1,5 @@
 <?php
+include "navbar.php";
 include "../db/config.php";
 
 $error = $success = "";

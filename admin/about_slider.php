@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "navbar.php";
 include "../db/config.php";
 
 /* ================= ADD SLIDER ================= */
@@ -81,19 +82,137 @@ $sliders = $conn->query("SELECT * FROM about_slider ORDER BY id DESC");
 <head>
 <title>About Slider Manager</title>
 <style>
-body{font-family:Arial;background:#f3f3f3;padding:20px}
-.container{width:90%;margin:auto}
-h2{text-align:center}
-form,table{background:white;padding:20px;border-radius:10px;margin-bottom:20px}
-input,button{width:100%;padding:10px;margin-top:10px;border-radius:5px;border:1px solid #aaa}
-button{background:#1f2937;color:white;border:none;cursor:pointer}
-table{width:100%;border-collapse:collapse}
-th,td{padding:10px;text-align:center;border-bottom:1px solid #ddd}
-th{background:#1f2937;color:white}
-img{width:120px;height:70px;object-fit:cover;border-radius:5px}
-a.button{padding:6px 12px;background:#1f2937;color:white;border-radius:5px;text-decoration:none;margin:2px;display:inline-block}
-a.delete{background:red}
-a.cancel{background:#6b7280}
+/* ===== Base Reset ===== */
+*{
+    box-sizing: border-box;
+}
+
+/* ===== Body ===== */
+body{
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Layout Adjustment (Left Navbar) ===== */
+.container{
+    width: calc(100% - 240px);
+    margin-left: 240px;
+    padding: 25px;
+    min-height: calc(100vh - 60px);
+}
+
+/* ===== Headings ===== */
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1f2937;
+}
+
+/* ===== Form & Table Card ===== */
+form,
+table{
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* ===== Inputs ===== */
+input{
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e1;
+    outline: none;
+}
+
+input:focus{
+    border-color: #2563eb;
+}
+
+/* ===== Buttons ===== */
+button{
+    background: #1f2937;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover{
+    background: #111827;
+}
+
+/* ===== Table ===== */
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td{
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th{
+    background: #1f2937;
+    color: #ffffff;
+}
+
+/* ===== Image ===== */
+img{
+    width: 120px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+/* ===== Action Buttons ===== */
+a.button{
+    padding: 6px 12px;
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 3px;
+    display: inline-block;
+    font-size: 13px;
+}
+
+a.button:hover{
+    background: #1d4ed8;
+}
+
+a.delete{
+    background: #dc2626;
+}
+
+a.delete:hover{
+    background: #b91c1c;
+}
+
+a.cancel{
+    background: #6b7280;
+}
+
+/* ===== Footer ===== */
+footer{
+    background: #1f2937;
+    color: #ffffff;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    margin-left: 240px;
+}
+
 </style>
 </head>
 

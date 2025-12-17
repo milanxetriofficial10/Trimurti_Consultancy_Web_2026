@@ -3,8 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SEO Meta : Brand Search -->
 <title>Trimurti Educational Consultancy</title>
-<link rel="icon" href="../img/468819674_122128647596461823_8355324234216025560_n-modified.png">
+
+<meta name="description"
+      content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
+
+<meta name="keywords"
+      content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
+
+<meta name="author" content="Trimurti Educational Consultancy">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://yourwebsite.com/">
+
+<link rel="icon" href="../img /468819674_122128647596461823_8355324234216025560_n-modified.png">
 <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
@@ -39,6 +54,7 @@
 <script src="navbar.js"></script>
 </body>
 </html>
+
 <style>
   body{
     margin:0;
@@ -53,9 +69,8 @@
     align-items:center;
     padding:0 20px;
     justify-content:space-between;
-    position:relative;
-     position: sticky;  /* change from relative to sticky */
-    top: 0;            /* stick to top */
+    position: sticky;  
+    top: 0;            
     z-index: 1000;
 }
 

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "navbar.php";
 include "../db/config.php";
 
 /* ================= ADD MANAGER ================= */

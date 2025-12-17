@@ -1,5 +1,15 @@
 
  <link rel="icon" href="../img /468819674_122128647596461823_8355324234216025560_n-modified.png" sizes="50x52" type="image/png">
+<!-- SEO Meta : Brand Search -->
+<title>Trimurti Educational Consultancy | Nepal</title>
+
+<meta name="description"
+      content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
+<meta name="keywords"
+      content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
+<meta name="author" content="Trimurti Educational Consultancy">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourwebsite.com/">
 
 <!-- 🔝 Top Header -->
 <div class="top-header">

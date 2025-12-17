@@ -23,6 +23,7 @@ if(isset($_POST['login'])){
         $msg = "Admin not found!";
     }
 }
+include "navbar.php";
 ?>
 
 
