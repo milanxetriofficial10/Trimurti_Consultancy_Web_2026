@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
 /* ================= ADD IMAGE ================= */
@@ -62,7 +61,6 @@ if (isset($_POST['update_gallery'])) {
 /* ================= FETCH ALL ================= */
 $gallery = $conn->query("SELECT * FROM gallery ORDER BY id DESC");
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,13 +83,15 @@ a.cancel{background:#6b7280}
 </head>
 
 <body>
+
+<?php include "navbar.php"; ?>
+
 <div class="container">
 
 <h2>🖼 Gallery Manager</h2>
 
-<!-- ================= ADD / EDIT FORM ================= -->
 <form method="POST" enctype="multipart/form-data">
-<?php if($edit): ?>
+<?php if ($edit): ?>
     <input type="hidden" name="id" value="<?php echo $edit['id']; ?>">
 
     <label>Image Title:</label>
@@ -102,7 +102,6 @@ a.cancel{background:#6b7280}
 
     <button name="update_gallery">Update Image</button>
     <a href="gallery_add.php" class="button cancel">Cancel</a>
-
 <?php else: ?>
     <label>Image Title:</label>
     <input type="text" name="title" required>
@@ -112,11 +111,10 @@ a.cancel{background:#6b7280}
 
     <button name="add_gallery">Upload Image</button>
 <?php endif; ?>
-
 </form>
-    <a href="dashboard.php"><button>Back Home</button></a>
 
-<!-- ================= TABLE ================= -->
+<a href="dashboard.php"><button>Back Home</button></a>
+
 <h2>All Gallery Images</h2>
 <table>
 <tr>
@@ -126,7 +124,7 @@ a.cancel{background:#6b7280}
 <th>Actions</th>
 </tr>
 
-<?php while($row = $gallery->fetch_assoc()): ?>
+<?php while ($row = $gallery->fetch_assoc()): ?>
 <tr>
 <td><?php echo $row['id']; ?></td>
 <td><img src="uploads/<?php echo $row['image']; ?>"></td>

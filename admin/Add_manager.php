@@ -1,10 +1,9 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
 /* ================= ADD MANAGER ================= */
-if(isset($_POST['add_manager'])){
+if (isset($_POST['add_manager'])) {
     $consultancy = mysqli_real_escape_string($conn, $_POST['consultancy']);
     $name        = mysqli_real_escape_string($conn, $_POST['name']);
     $years       = intval($_POST['years']);
@@ -12,7 +11,7 @@ if(isset($_POST['add_manager'])){
     $msg         = mysqli_real_escape_string($conn, $_POST['msg']);
 
     $image = time() . "_" . $_FILES['image']['name'];
-    move_uploaded_file($_FILES['image']['tmp_name'], "uploads/".$image);
+    move_uploaded_file($_FILES['image']['tmp_name'], "uploads/" . $image);
 
     $conn->query("
         INSERT INTO about_manager
@@ -26,12 +25,12 @@ if(isset($_POST['add_manager'])){
 }
 
 /* ================= DELETE MANAGER ================= */
-if(isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
 
     $old = $conn->query("SELECT manager_image FROM about_manager WHERE id=$id")->fetch_assoc();
-    if($old && file_exists("uploads/".$old['manager_image'])){
-        unlink("uploads/".$old['manager_image']);
+    if ($old && file_exists("uploads/" . $old['manager_image'])) {
+        unlink("uploads/" . $old['manager_image']);
     }
 
     $conn->query("DELETE FROM about_manager WHERE id=$id");
@@ -41,13 +40,13 @@ if(isset($_GET['delete'])){
 
 /* ================= FETCH EDIT DATA ================= */
 $edit = null;
-if(isset($_GET['edit'])){
+if (isset($_GET['edit'])) {
     $id = intval($_GET['edit']);
     $edit = $conn->query("SELECT * FROM about_manager WHERE id=$id")->fetch_assoc();
 }
 
 /* ================= UPDATE MANAGER ================= */
-if(isset($_POST['update_manager'])){
+if (isset($_POST['update_manager'])) {
     $id          = intval($_POST['id']);
     $consultancy = mysqli_real_escape_string($conn, $_POST['consultancy']);
     $name        = mysqli_real_escape_string($conn, $_POST['name']);
@@ -55,14 +54,14 @@ if(isset($_POST['update_manager'])){
     $students    = intval($_POST['students']);
     $msg         = mysqli_real_escape_string($conn, $_POST['msg']);
 
-    if(!empty($_FILES['image']['name'])){
+    if (!empty($_FILES['image']['name'])) {
         $old = $conn->query("SELECT manager_image FROM about_manager WHERE id=$id")->fetch_assoc();
-        if($old && file_exists("uploads/".$old['manager_image'])){
-            unlink("uploads/".$old['manager_image']);
+        if ($old && file_exists("uploads/" . $old['manager_image'])) {
+            unlink("uploads/" . $old['manager_image']);
         }
 
         $image = time() . "_" . $_FILES['image']['name'];
-        move_uploaded_file($_FILES['image']['tmp_name'], "uploads/".$image);
+        move_uploaded_file($_FILES['image']['tmp_name'], "uploads/" . $image);
 
         $conn->query("
             UPDATE about_manager SET
@@ -93,7 +92,6 @@ if(isset($_POST['update_manager'])){
 /* ================= FETCH ALL ================= */
 $managers = $conn->query("SELECT * FROM about_manager ORDER BY id DESC");
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -116,21 +114,20 @@ a.cancel{background:#6b7280}
 </head>
 
 <body>
+
+<?php include "navbar.php"; ?>
+
 <div class="container">
 
 <h2>👔 About Manager Section</h2>
 
-<!-- ================= ADD / EDIT FORM ================= -->
 <form method="POST" enctype="multipart/form-data">
-<?php if($edit): ?>
+<?php if ($edit): ?>
     <input type="hidden" name="id" value="<?php echo $edit['id']; ?>">
 
     <input type="text" name="consultancy" value="<?php echo $edit['consultancy_name']; ?>" placeholder="Consultancy Name" required>
-
     <input type="text" name="name" value="<?php echo $edit['manager_name']; ?>" placeholder="Manager Name" required>
-
     <input type="number" name="years" value="<?php echo $edit['years_active']; ?>" placeholder="Years of Experience" required>
-
     <input type="number" name="students" value="<?php echo $edit['students_count']; ?>" placeholder="Students Served" required>
 
     <input type="file" name="image">
@@ -140,27 +137,19 @@ a.cancel{background:#6b7280}
 
     <button name="update_manager">Update Manager</button>
     <a href="Add_manager.php" class="button cancel">Cancel</a>
-
 <?php else: ?>
     <input type="text" name="consultancy" placeholder="Consultancy Name" required>
-
     <input type="text" name="name" placeholder="Manager Name" required>
-
     <input type="number" name="years" placeholder="Years of Experience" required>
-
     <input type="number" name="students" placeholder="Students Served" required>
-
     <input type="file" name="image" required>
-
     <textarea name="msg" placeholder="Manager Message" required></textarea>
-
     <button name="add_manager">Add Manager</button>
 <?php endif; ?>
 </form>
 
 <a href="dashboard.php"><button>Back Home</button></a>
 
-<!-- ================= TABLE ================= -->
 <h2>All Managers</h2>
 <table>
 <tr>
@@ -173,7 +162,7 @@ a.cancel{background:#6b7280}
 <th>Actions</th>
 </tr>
 
-<?php while($row=$managers->fetch_assoc()): ?>
+<?php while ($row = $managers->fetch_assoc()): ?>
 <tr>
 <td><?php echo $row['id']; ?></td>
 <td><img src="uploads/<?php echo $row['manager_image']; ?>"></td>

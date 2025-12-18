@@ -1,9 +1,7 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
-/* ================= ADD SLIDER ================= */
 if(isset($_POST['add_slider'])){
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $btn   = mysqli_real_escape_string($conn, $_POST['btn']);
@@ -18,7 +16,6 @@ if(isset($_POST['add_slider'])){
     exit();
 }
 
-/* ================= DELETE SLIDER ================= */
 if(isset($_GET['delete'])){
     $id = intval($_GET['delete']);
 
@@ -39,7 +36,6 @@ if(isset($_GET['edit'])){
     $edit = $conn->query("SELECT * FROM about_slider WHERE id=$id")->fetch_assoc();
 }
 
-/* ================= UPDATE SLIDER ================= */
 if(isset($_POST['update_slider'])){
     $id    = intval($_POST['id']);
     $title = mysqli_real_escape_string($conn, $_POST['title']);
@@ -73,8 +69,8 @@ if(isset($_POST['update_slider'])){
     exit();
 }
 
-/* ================= FETCH ALL ================= */
 $sliders = $conn->query("SELECT * FROM about_slider ORDER BY id DESC");
+include "navbar.php";
 ?>
 
 <!DOCTYPE html>

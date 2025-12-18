@@ -1,10 +1,9 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
 /* ================= ADD NEWS ================= */
-if(isset($_POST['add_news'])){
+if (isset($_POST['add_news'])) {
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $conn->query("INSERT INTO top_news (title) VALUES ('$title')");
     header("Location: top_news.php");
@@ -12,7 +11,7 @@ if(isset($_POST['add_news'])){
 }
 
 /* ================= DELETE NEWS ================= */
-if(isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     $conn->query("DELETE FROM top_news WHERE id=$id");
     header("Location: top_news.php");
@@ -21,13 +20,13 @@ if(isset($_GET['delete'])){
 
 /* ================= FETCH EDIT DATA ================= */
 $edit = null;
-if(isset($_GET['edit'])){
+if (isset($_GET['edit'])) {
     $id = intval($_GET['edit']);
     $edit = $conn->query("SELECT * FROM top_news WHERE id=$id")->fetch_assoc();
 }
 
 /* ================= UPDATE NEWS ================= */
-if(isset($_POST['update_news'])){
+if (isset($_POST['update_news'])) {
     $id    = intval($_POST['id']);
     $title = mysqli_real_escape_string($conn, $_POST['title']);
 
@@ -60,13 +59,15 @@ a.cancel{background:#6b7280}
 </head>
 
 <body>
+
+<?php include "navbar.php"; ?>
+
 <div class="container">
 
 <h2>📰 Top News Manager</h2>
 
-<!-- ================= ADD / EDIT FORM ================= -->
 <form method="POST">
-<?php if($edit): ?>
+<?php if ($edit): ?>
     <input type="hidden" name="id" value="<?php echo $edit['id']; ?>">
 
     <label>News Title:</label>
@@ -74,7 +75,6 @@ a.cancel{background:#6b7280}
 
     <button name="update_news">Update News</button>
     <a href="top_news.php" class="button cancel">Cancel</a>
-
 <?php else: ?>
     <label>News Title:</label>
     <input type="text" name="title" required>
@@ -83,7 +83,6 @@ a.cancel{background:#6b7280}
 <?php endif; ?>
 </form>
 
-<!-- ================= NEWS TABLE ================= -->
 <h2>All Top News</h2>
 <table>
 <tr>
@@ -92,7 +91,7 @@ a.cancel{background:#6b7280}
     <th>Actions</th>
 </tr>
 
-<?php while($row=$news->fetch_assoc()): ?>
+<?php while ($row = $news->fetch_assoc()): ?>
 <tr>
     <td><?php echo $row['id']; ?></td>
     <td><?php echo $row['title']; ?></td>
@@ -103,7 +102,9 @@ a.cancel{background:#6b7280}
 </tr>
 <?php endwhile; ?>
 </table>
+
 <a href="dashboard.php"><button>Back Home</button></a>
+
 </div>
 </body>
 </html>

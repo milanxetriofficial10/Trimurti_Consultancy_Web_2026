@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
 /* ===================== ADD COURSE ===================== */
@@ -24,10 +23,12 @@ if (isset($_POST['add_course'])) {
 /* ===================== DELETE COURSE ===================== */
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
+
     $res = $conn->query("SELECT image FROM courses WHERE id=$id")->fetch_assoc();
     if ($res && file_exists("uploads/" . $res['image'])) {
         unlink("uploads/" . $res['image']);
     }
+
     $conn->query("DELETE FROM courses WHERE id=$id");
     header("Location: admin_course.php");
     exit();
@@ -107,11 +108,12 @@ a.cancel{background:#6b7280}
 </head>
 
 <body>
-<div class="container">
 
+<?php include "navbar.php"; ?>
+
+<div class="container">
 <h2>📘 Course Manager</h2>
 
-<!-- ===================== ADD / EDIT FORM ===================== -->
 <form method="POST" enctype="multipart/form-data">
 <?php if ($edit): ?>
     <input type="hidden" name="id" value="<?php echo $edit['id']; ?>">
@@ -136,7 +138,6 @@ a.cancel{background:#6b7280}
 
     <button name="update_course">Update Course</button>
     <a href="admin_course.php" class="button cancel">Cancel</a>
-
 <?php else: ?>
     <label>Course Image:</label>
     <input type="file" name="image" required>
@@ -160,7 +161,6 @@ a.cancel{background:#6b7280}
 <?php endif; ?>
 </form>
 
-<!-- ===================== COURSE TABLE ===================== -->
 <h2>All Courses</h2>
 <table>
 <tr>
@@ -174,24 +174,22 @@ a.cancel{background:#6b7280}
 <td><?php echo $row['title']; ?></td>
 <td><?php echo $row['description']; ?></td>
 <td>
-    <?php if($row['discount'] > 0): ?>
-        <span class="badge"><?php echo $row['discount']; ?>% OFF</span>
-    <?php else: ?>
-        —
-    <?php endif; ?>
+<?php if($row['discount'] > 0): ?>
+<span class="badge"><?php echo $row['discount']; ?>% OFF</span>
+<?php else: ?>—<?php endif; ?>
 </td>
 <td><?php echo $row['button_text']; ?></td>
 <td><?php echo $row['button_link']; ?></td>
 <td>
-    <a class="button" href="?edit=<?php echo $row['id']; ?>">Edit</a>
-    <a class="button delete" href="?delete=<?php echo $row['id']; ?>" onclick="return confirm('Delete course?')">Delete</a>
+<a class="button" href="?edit=<?php echo $row['id']; ?>">Edit</a>
+<a class="button delete" href="?delete=<?php echo $row['id']; ?>" onclick="return confirm('Delete course?')">Delete</a>
 </td>
 </tr>
 <?php endwhile; ?>
 </table>
+
 <a href="dashboard.php"><button>Back Home</button></a>
 </div>
 
 </body>
 </html>
-

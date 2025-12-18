@@ -1,6 +1,5 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
 /* ===================== UPLOADS FOLDER ===================== */
@@ -9,8 +8,8 @@ if (!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
 
 /* ===================== ADD SLIDE ===================== */
 if (isset($_POST['upload'])) {
-    $image = $_FILES['image']['name'];
-    $target = $upload_dir . basename($image);
+    $image = time() . "_" . $_FILES['image']['name'];
+    $target = $upload_dir . $image;
 
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
         $heading   = mysqli_real_escape_string($conn, $_POST['heading']);
@@ -22,6 +21,9 @@ if (isset($_POST['upload'])) {
             (image, heading, paragraph, btn_text, btn_link)
             VALUES ('$image','$heading','$paragraph','$btn_text','$btn_link')");
     }
+
+    header("Location: admin_sliders.php");
+    exit();
 }
 
 /* ===================== DELETE SLIDE ===================== */
@@ -32,10 +34,12 @@ if (isset($_GET['delete'])) {
     if ($res && file_exists($upload_dir . $res['image'])) {
         unlink($upload_dir . $res['image']);
     }
+
     $conn->query("DELETE FROM slider_images WHERE id=$id");
     header("Location: admin_sliders.php");
     exit();
 }
+
 /* ===================== FETCH EDIT DATA ===================== */
 $edit = null;
 if (isset($_GET['edit'])) {
@@ -83,7 +87,6 @@ if (isset($_POST['update'])) {
 /* ===================== FETCH ALL SLIDES ===================== */
 $slides = $conn->query("SELECT * FROM slider_images ORDER BY id DESC");
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,11 +109,13 @@ a.cancel{background:#6b7280}
 </head>
 
 <body>
+
+<?php include "navbar.php"; ?>
+
 <div class="container">
 
 <h2>🎞 Slider Manager</h2>
 
-<!-- ===================== ADD / EDIT FORM ===================== -->
 <form method="POST" enctype="multipart/form-data">
 <?php if ($edit): ?>
     <input type="hidden" name="id" value="<?php echo $edit['id']; ?>">
@@ -131,13 +136,12 @@ a.cancel{background:#6b7280}
 <?php endif; ?>
 </form>
 
-<!-- ===================== SLIDE LIST ===================== -->
 <table>
 <tr>
 <th>ID</th><th>Image</th><th>Heading</th><th>Paragraph</th><th>Button</th><th>Link</th><th>Action</th>
 </tr>
 
-<?php while($row = $slides->fetch_assoc()): ?>
+<?php while ($row = $slides->fetch_assoc()): ?>
 <tr>
 <td><?php echo $row['id']; ?></td>
 <td><img src="uploads/<?php echo $row['image']; ?>"></td>
@@ -151,10 +155,10 @@ a.cancel{background:#6b7280}
 </td>
 </tr>
 <?php endwhile; ?>
-
 </table>
 
-</div>
 <a href="dashboard.php"><button>Back Home</button></a>
+
+</div>
 </body>
 </html>

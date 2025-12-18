@@ -1,10 +1,9 @@
 <?php
 session_start();
-include "navbar.php";
 include "../db/config.php";
 
 /* ================= ADD DESCRIPTION ================= */
-if(isset($_POST['add_about'])){
+if (isset($_POST['add_about'])) {
     $desc = mysqli_real_escape_string($conn, $_POST['desc']);
     $conn->query("INSERT INTO about_consultancy (description) VALUES ('$desc')");
     header("Location: add_about_file.php");
@@ -12,7 +11,7 @@ if(isset($_POST['add_about'])){
 }
 
 /* ================= DELETE ================= */
-if(isset($_GET['delete'])){
+if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     $conn->query("DELETE FROM about_consultancy WHERE id=$id");
     header("Location: add_about_file.php");
@@ -21,13 +20,13 @@ if(isset($_GET['delete'])){
 
 /* ================= FETCH EDIT DATA ================= */
 $edit = null;
-if(isset($_GET['edit'])){
+if (isset($_GET['edit'])) {
     $id = intval($_GET['edit']);
     $edit = $conn->query("SELECT * FROM about_consultancy WHERE id=$id")->fetch_assoc();
 }
 
 /* ================= UPDATE ================= */
-if(isset($_POST['update_about'])){
+if (isset($_POST['update_about'])) {
     $id   = intval($_POST['id']);
     $desc = mysqli_real_escape_string($conn, $_POST['desc']);
 
@@ -39,7 +38,6 @@ if(isset($_POST['update_about'])){
 /* ================= FETCH ALL ================= */
 $about = $conn->query("SELECT * FROM about_consultancy ORDER BY id DESC");
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,13 +59,15 @@ a.cancel{background:#6b7280}
 </head>
 
 <body>
+
+<?php include "navbar.php"; ?>
+
 <div class="container">
 
 <h2>🏫 About Consultancy Manager</h2>
 
-<!-- ================= ADD / EDIT FORM ================= -->
 <form method="POST">
-<?php if($edit): ?>
+<?php if ($edit): ?>
     <input type="hidden" name="id" value="<?php echo $edit['id']; ?>">
 
     <label>Edit Description:</label>
@@ -75,7 +75,6 @@ a.cancel{background:#6b7280}
 
     <button name="update_about">Update</button>
     <a href="add_about_file.php" class="button cancel">Cancel</a>
-
 <?php else: ?>
     <label>Write About Consultancy:</label>
     <textarea name="desc" rows="6" placeholder="Write about Trimurti Educational Consultancy" required></textarea>
@@ -85,7 +84,7 @@ a.cancel{background:#6b7280}
 </form>
 
 <a href="dashboard.php"><button>Back Home</button></a>
-<!-- ================= TABLE ================= -->
+
 <h2>All About Content</h2>
 <table>
 <tr>
@@ -94,7 +93,7 @@ a.cancel{background:#6b7280}
 <th>Actions</th>
 </tr>
 
-<?php while($row = $about->fetch_assoc()): ?>
+<?php while ($row = $about->fetch_assoc()): ?>
 <tr>
 <td><?php echo $row['id']; ?></td>
 <td style="text-align:left"><?php echo nl2br($row['description']); ?></td>
