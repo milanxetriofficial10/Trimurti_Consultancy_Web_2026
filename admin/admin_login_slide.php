@@ -1,4 +1,5 @@
 <?php
+
 include "navbar.php";
 include "../db/config.php";
 
@@ -6,7 +7,6 @@ $error = $success = "";
 $editing_id = 0;
 $editing_data = null;
 
-// Handle Edit Update
 if (isset($_POST['update'])) {
     $id = intval($_POST['slide_id']);
     $header = $_POST['header_text'];
