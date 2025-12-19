@@ -187,8 +187,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php endwhile; ?>
 </div>
 
-
-
 <h2 class="gallery-title">Media Gallery</h2>
 
 <div class="media-gallery">
