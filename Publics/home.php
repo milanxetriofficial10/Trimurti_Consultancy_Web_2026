@@ -157,6 +157,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <img id="modalImg">
 </div>
 
+
+<h2>Media Gallery</h2>
+<div class="gallery-container">
+<?php while($row = $result->fetch_assoc()): ?>
+    <div class="media-card">
+        <h3><?php echo htmlspecialchars($row['name']); ?></h3>
+        <p><?php echo htmlspecialchars($row['description']); ?></p>
+
+        <?php if($row['video']): ?>
+            <video controls>
+                <source src="<?php echo $row['video']; ?>" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        <?php endif; ?>
+
+        <?php if($row['image']): ?>
+            <img src="<?php echo $row['image']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
+        <?php endif; ?>
+
+        <?php if($row['audio']): ?>
+            <audio controls>
+                <source src="<?php echo $row['audio']; ?>" type="audio/mpeg">
+                Your browser does not support audio element.
+            </audio>
+        <?php endif; ?>
+    </div>
+<?php endwhile; ?>
+</div>
+
+
 <!-- Contact Section -->
 <div class="contact-container">
     <div class="contact-form">
@@ -495,4 +525,80 @@ include "../includes/footer.php";
 iframe { width:100%; height:250px; border:0; border-radius:10px; }
 @media(max-width:768px){ .contact-container{ flex-direction:column; } }
 
+
+/* Gallery container */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Individual media card */
+.media-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.media-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Media card title */
+.media-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Media card description */
+.media-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+/* Images */
+.media-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+/* Videos */
+.media-card video {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Audio */
+.media-card audio {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Responsive text */
+@media screen and (max-width: 768px) {
+    .media-card h3 {
+        font-size: 1.1rem;
+    }
+    .media-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Page heading */
+h2 {
+    text-align: center;
+    margin: 20px 0;
+    color: #222;
+    font-size: 2rem;
+}
 </style>

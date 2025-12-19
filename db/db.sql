@@ -90,3 +90,15 @@ ALTER TABLE about_manager
 ADD consultancy_name VARCHAR(150),
 ADD years_active INT,
 ADD students_count INT;
+
+
+CREATE TABLE `media_gallery` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `description` TEXT,
+  `video` VARCHAR(255) DEFAULT NULL,
+  `image` VARCHAR(255) DEFAULT NULL,
+  `audio` VARCHAR(255) DEFAULT NULL,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
