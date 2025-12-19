@@ -188,6 +188,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 
+
+<h2 class="gallery-title">Media Gallery</h2>
+
+<div class="media-gallery">
+<?php while($row = $result->fetch_assoc()): ?>
+    <div class="gallery-item">
+        <h3 class="gallery-name"><?php echo htmlspecialchars($row['name']); ?></h3>
+        <p class="gallery-desc"><?php echo htmlspecialchars($row['description']); ?></p>
+
+        <!-- Video -->
+        <?php if($row['video']): ?>
+            <video class="gallery-video" controls>
+                <source src="admin/<?php echo $row['video']; ?>" type="video/mp4">
+                Your browser does not support HTML5 video.
+            </video>
+        <?php endif; ?>
+
+        <!-- Image -->
+        <?php if($row['image']): ?>
+            <img class="gallery-image" src="admin/<?php echo $row['image']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
+        <?php endif; ?>
+
+        <!-- Audio -->
+        <?php if($row['audio']): ?>
+            <audio class="gallery-audio" controls>
+                <source src="admin/<?php echo $row['audio']; ?>" type="audio/mpeg">
+                Your browser does not support audio element.
+            </audio>
+        <?php endif; ?>
+    </div>
+<?php endwhile; ?>
+</div>
+
+
 <!-- Contact Section -->
 <div class="contact-container">
     <div class="contact-form">
@@ -527,16 +561,24 @@ iframe { width:100%; height:250px; border:0; border-radius:10px; }
 @media(max-width:768px){ .contact-container{ flex-direction:column; } }
 
 
-/* Gallery container */
-.gallery-container {
+/* Page heading */
+.gallery-title {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2rem;
+    color: #222;
+}
+
+/* Gallery container grid */
+.media-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
     padding: 20px;
 }
 
-/* Individual media card */
-.media-card {
+/* Each card */
+.gallery-item {
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -544,62 +586,42 @@ iframe { width:100%; height:250px; border:0; border-radius:10px; }
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.media-card:hover {
+.gallery-item:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-/* Media card title */
-.media-card h3 {
+/* Name and description */
+.gallery-name {
     font-size: 1.2rem;
     margin-bottom: 8px;
     color: #333;
 }
-
-/* Media card description */
-.media-card p {
+.gallery-desc {
     font-size: 0.95rem;
     color: #555;
     margin-bottom: 12px;
 }
 
-/* Images */
-.media-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    object-fit: cover;
-}
-
-/* Videos */
-.media-card video {
+/* Media styling */
+.gallery-image, .gallery-video {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 10px;
 }
-
-/* Audio */
-.media-card audio {
+.gallery-audio {
     width: 100%;
     margin-top: 5px;
 }
 
 /* Responsive text */
 @media screen and (max-width: 768px) {
-    .media-card h3 {
+    .gallery-name {
         font-size: 1.1rem;
     }
-    .media-card p {
+    .gallery-desc {
         font-size: 0.9rem;
     }
 }
 
-/* Page heading */
-h2 {
-    text-align: center;
-    margin: 20px 0;
-    color: #222;
-    font-size: 2rem;
-}
 </style>
