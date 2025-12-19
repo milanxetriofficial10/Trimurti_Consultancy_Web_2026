@@ -9,6 +9,7 @@ $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
 $courses = $conn->query("SELECT * FROM courses ORDER BY id DESC");
 $categories = $conn->query("SELECT * FROM course_categories ORDER BY id DESC");
 $result = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
+$result = $conn->query("SELECT * FROM media_gallery ORDER BY created_at DESC");
 
 
 // Contact Form Processing
