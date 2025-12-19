@@ -19,14 +19,14 @@
 
 <link rel="canonical" href="https://yourwebsite.com/">
 
-<link rel="icon" href="../img /468819674_122128647596461823_8355324234216025560_n-modified.png">
+<link rel="icon" href="../img/468819674_122128647596461823_8355324234216025560_n-modified.png">
 <link rel="stylesheet" href="navbar.css">
 </head>
 <body>
 <nav class="navbar">
     <!-- Logo -->
     <a href="../Publics/home.php" class="brand">
-        <img src="../img /468819674_122128647596461823_8355324234216025560_n__1_-removebg-preview.png" alt="Logo">
+        <img src="../img/468819674_122128647596461823_8355324234216025560_n-modified.png" alt="Logo">
         <span>Trimurti Educational Consultancy</span>
     </a>
 

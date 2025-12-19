@@ -12,6 +12,7 @@
               <a href="gallery_add.php">Gallery Add</a>
               <a href="admissions_list.php">Join Us List Form</a>
               <a href="Add_manager.php">Manager Add</a>
+              <a href="add_media.php">Add Video/Image</a>
               <a href="add_about_file.php">About Text Add</a>
             <a href="admin_sliders.php">Slider</a>    
             <a href="contact_slide.php">Contact Slide</a>

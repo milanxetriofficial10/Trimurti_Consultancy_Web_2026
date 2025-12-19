@@ -1,5 +1,5 @@
 
- <link rel="icon" href="../img /468819674_122128647596461823_8355324234216025560_n-modified.png" sizes="50x52" type="image/png">
+ <link rel="icon" href="../img/468819674_122128647596461823_8355324234216025560_n-modified.png" sizes="50x52" type="image/png">
 <!-- SEO Meta : Brand Search -->
 <title>Trimurti Educational Consultancy | Nepal</title>
 
@@ -33,11 +33,11 @@
 
         <!-- Right : Country Flags -->
         <div class="top-right flags">
-            <a href="#"><img src="../img /flag/united_states_of_america_64.png" alt="USA"></a>
-            <a href="#"><img src="../img /flag/new_zealand_64.png" alt="NZ"></a>
-            <a href="#"><img src="../img /flag/korea_south_64.png" alt="Japan"></a>
-            <a href="#"><img src="../img /flag/japan_64.png" alt="Korea"></a>
-            <a href="#"><img src="../img /flag/nepal_64.png" alt="Nepal"></a>
+            <a href="#"><img src="../img/flag/united_states_of_america_64.png" alt="USA"></a>
+            <a href="#"><img src="../img/flag/new_zealand_64.png" alt="NZ"></a>
+            <a href="#"><img src="../img/flag/korea_south_64.png" alt="Japan"></a>
+            <a href="#"><img src="../img/flag/japan_64.png" alt="Korea"></a>
+            <a href="#"><img src="../img/flag/nepal_64.png" alt="Nepal"></a>
         </div>
 
     </div>

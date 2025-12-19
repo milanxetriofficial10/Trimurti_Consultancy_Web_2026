@@ -9,7 +9,7 @@ $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
 $courses = $conn->query("SELECT * FROM courses ORDER BY id DESC");
 $categories = $conn->query("SELECT * FROM course_categories ORDER BY id DESC");
 $result = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
-$result = $conn->query("SELECT * FROM media_gallery ORDER BY created_at DESC");
+
 
 
 // Contact Form Processing
@@ -159,33 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 
-<h2>Media Gallery</h2>
-<div class="gallery-container">
-<?php while($row = $result->fetch_assoc()): ?>
-    <div class="media-card">
-        <h3><?php echo htmlspecialchars($row['name']); ?></h3>
-        <p><?php echo htmlspecialchars($row['description']); ?></p>
 
-        <?php if($row['video']): ?>
-            <video controls>
-                <source src="<?php echo $row['video']; ?>" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
-        <?php endif; ?>
-
-        <?php if($row['image']): ?>
-            <img src="<?php echo $row['image']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
-        <?php endif; ?>
-
-        <?php if($row['audio']): ?>
-            <audio controls>
-                <source src="<?php echo $row['audio']; ?>" type="audio/mpeg">
-                Your browser does not support audio element.
-            </audio>
-        <?php endif; ?>
-    </div>
-<?php endwhile; ?>
-</div>
 
 
 <!-- Contact Section -->
