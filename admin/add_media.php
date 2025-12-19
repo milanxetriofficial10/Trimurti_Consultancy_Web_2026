@@ -11,9 +11,16 @@ if(isset($_POST['submit'])){
     $audio = $_FILES['audio']['name'];
 
     // File paths
+<<<<<<< HEAD
     $video_path = $video ? 'uploads/'.$video : null;
     $image_path = $image ? 'uploads/'.$image : null;
     $audio_path = $audio ? 'uploads/'.$audio : null;
+=======
+    $image_path = $image ? 'uploads/images/'.$image : null;
+    $video_path = $video ? 'uploads/videos/'.$video : null;
+    $audio_path = $audio ? 'uploads/audio/'.$audio : null;
+    
+>>>>>>> 551fa5a0fb036e5b8b274391b6c8e05f61e85ce3
 
     // Move uploaded files
     if($video) move_uploaded_file($_FILES['video']['tmp_name'], $video_path);
