@@ -12,19 +12,12 @@ $courses = $conn->query("SELECT * FROM courses ORDER BY id DESC");
 $result = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
 ?>
 <!-- SEO Meta : Brand Search -->
-<title>Trimurti Educational Consultancy | Nepal</title>
-
-<meta name="description"
-      content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
-
-<meta name="keywords"
-      content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
-
+<title>Trimurti Educational Consultancy | Service</title>
+<meta name="description" content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling. | Service">
+<meta name="keywords" content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
 <meta name="author" content="Trimurti Educational Consultancy">
-
 <meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://yourwebsite.com/">
+<link rel="canonical" href="https://website.com.np/">
 
 <div class="top-news-bar">
     <div class="top-news-label">Important News</div>

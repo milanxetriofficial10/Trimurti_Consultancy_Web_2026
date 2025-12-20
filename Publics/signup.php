@@ -38,7 +38,6 @@ if (isset($_POST['signup'])) {
         }
     }
 }
-
 // Fetch slider images
 $slides = mysqli_query($conn, "SELECT * FROM login_slide_images ORDER BY id DESC");
 ?>
@@ -46,7 +45,13 @@ $slides = mysqli_query($conn, "SELECT * FROM login_slide_images ORDER BY id DESC
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Signup - Trimurti Educational Consultancy</title>
+<title>Signup - Trimurti Educational Consultancy</title>
+<meta name="description" content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
+<meta name="description" content="The Best Consultancy In Nepal. | Signup Here">
+<meta name="keywords" content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
+<meta name="author" content="Trimurti Educational Consultancy">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://website.com.np/">
     <link rel="icon" href="../img /468819674_122128647596461823_8355324234216025560_n-modified.png" sizes="50x52" type="image/png">
     <style>
         body, html{margin:0; padding:0; font-family:Arial, sans-serif; height:100%;}
@@ -66,17 +71,17 @@ $slides = mysqli_query($conn, "SELECT * FROM login_slide_images ORDER BY id DESC
         .signup-form{flex:1; display:flex; justify-content:center; align-items:center; background:#edf2fcff; flex-direction:column; padding:20px; box-sizing:border-box;}
         .signup-form img.logo{height:80px; margin-bottom:20px;}
         .signup-form input {
-    width: 80%;        /* पुरानो 100% बाट 80% मा घटाइयो */
-    max-width:300px;   /* सबै device मा input box excessively ठूलो नहोस */
-    padding:8px;       /* padding अलि कम */
+    width: 80%;      
+    max-width:300px;   
+    padding:8px;       
     margin:5px 0;
     border-radius:5px;
     border:1px solid #ccc;
-    font-size:14px;    /* text size adjust */
+    font-size:14px;   
     box-sizing:border-box;
 }
 .signup-form button {
-    width:80%;         /* button width input जस्तै */
+    width:80%;         
     max-width:300px;
     padding:10px;
     border:none;

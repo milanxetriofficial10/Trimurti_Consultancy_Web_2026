@@ -1,6 +1,5 @@
 <?php
 session_start();
-// but don't show role to users visually
 include "../includes/top_header.php";
 include "../includes/navbar.php";
 include "../db/config.php";
@@ -9,8 +8,6 @@ $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
 $courses = $conn->query("SELECT * FROM courses ORDER BY id DESC");
 $categories = $conn->query("SELECT * FROM course_categories ORDER BY id DESC");
 $result = mysqli_query($conn, "SELECT * FROM gallery ORDER BY id DESC");
-
-
 
 // Contact Form Processing
 $name = $email = $subject = $message = "";
@@ -41,18 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <!-- SEO Meta : Brand Search -->
 <title>Trimurti Educational Consultancy</title>
-
-<meta name="description"
-      content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
-
-<meta name="keywords"
-      content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
-
+<meta name="description" content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
+<meta name="description" content="The Best Consultancy In Nepal.">
+<meta name="keywords" content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
 <meta name="author" content="Trimurti Educational Consultancy">
-
 <meta name="robots" content="index, follow">
-
-<link rel="canonical" href="https://yourwebsite.com/">
+<link rel="canonical" href="https://website.com.np/">
 
 <link rel="stylesheet" href="./css/home.css">
 </head>
@@ -157,42 +148,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <a id="downloadBtn" download class="download"><i class="fa fa-download"></i></a>
     <img id="modalImg">
 </div>
-
-
-
-
-<h2 class="gallery-title">Media Gallery</h2>
-
-<div class="media-gallery">
-<?php while($row = $result->fetch_assoc()): ?>
-    <div class="gallery-item">
-        <h3 class="gallery-name"><?php echo htmlspecialchars($row['name']); ?></h3>
-        <p class="gallery-desc"><?php echo htmlspecialchars($row['description']); ?></p>
-
-        <!-- Video -->
-        <?php if($row['video']): ?>
-            <video class="gallery-video" controls>
-                <source src="admin/<?php echo $row['video']; ?>" type="video/mp4">
-                Your browser does not support HTML5 video.
-            </video>
-        <?php endif; ?>
-
-        <!-- Image -->
-        <?php if($row['image']): ?>
-            <img class="gallery-image" src="admin/<?php echo $row['image']; ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
-        <?php endif; ?>
-
-        <!-- Audio -->
-        <?php if($row['audio']): ?>
-            <audio class="gallery-audio" controls>
-                <source src="admin/<?php echo $row['audio']; ?>" type="audio/mpeg">
-                Your browser does not support audio element.
-            </audio>
-        <?php endif; ?>
-    </div>
-<?php endwhile; ?>
-</div>
-
 
 <!-- Contact Section -->
 <div class="contact-container">

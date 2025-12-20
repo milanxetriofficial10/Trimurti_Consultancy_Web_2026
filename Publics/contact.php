@@ -37,6 +37,12 @@ $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact - Trimurti Educational Consultancy</title>
+<meta name="description" content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling. | Contact US">
+<meta name="description" content="The Best Consultancy In Nepal. | Contact Us">
+<meta name="keywords" content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
+<meta name="author" content="Trimurti Educational Consultancy">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://website.com.np/">
 <style>
 
 .top-news-bar{

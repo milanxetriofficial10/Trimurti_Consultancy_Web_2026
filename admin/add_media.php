@@ -1,34 +1,50 @@
 <?php
-require '../db/config.php'; // your DB connection
+require '../db/config.php';
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
+
     $name = $_POST['name'];
     $description = $_POST['description'];
 
-    // File uploads
-    $video = $_FILES['video']['name'];
-    $image = $_FILES['image']['name'];
-    $audio = $_FILES['audio']['name'];
+    // Base upload directory (relative to this file)
+    $baseDir = __DIR__ . '/uploads/';
+    $imageDir = $baseDir . 'images/';
+    $videoDir = $baseDir . 'videos/';
+    $audioDir = $baseDir . 'audio/';
 
-    // File paths
-<<<<<<< HEAD
-    $video_path = $video ? 'uploads/'.$video : null;
-    $image_path = $image ? 'uploads/'.$image : null;
-    $audio_path = $audio ? 'uploads/'.$audio : null;
-=======
-    $image_path = $image ? 'uploads/images/'.$image : null;
-    $video_path = $video ? 'uploads/videos/'.$video : null;
-    $audio_path = $audio ? 'uploads/audio/'.$audio : null;
-    
->>>>>>> 551fa5a0fb036e5b8b274391b6c8e05f61e85ce3
+    // Create folders if not exists
+    if (!is_dir($imageDir)) mkdir($imageDir, 0755, true);
+    if (!is_dir($videoDir)) mkdir($videoDir, 0755, true);
+    if (!is_dir($audioDir)) mkdir($audioDir, 0755, true);
 
-    // Move uploaded files
-    if($video) move_uploaded_file($_FILES['video']['tmp_name'], $video_path);
-    if($image) move_uploaded_file($_FILES['image']['tmp_name'], $image_path);
-    if($audio) move_uploaded_file($_FILES['audio']['tmp_name'], $audio_path);
+    // File names
+    $image_path = null;
+    $video_path = null;
+    $audio_path = null;
+
+    if (!empty($_FILES['image']['name'])) {
+        $imageName = time() . '_' . basename($_FILES['image']['name']);
+        $image_path = 'uploads/images/' . $imageName;
+        move_uploaded_file($_FILES['image']['tmp_name'], $imageDir . $imageName);
+    }
+
+    if (!empty($_FILES['video']['name'])) {
+        $videoName = time() . '_' . basename($_FILES['video']['name']);
+        $video_path = 'uploads/videos/' . $videoName;
+        move_uploaded_file($_FILES['video']['tmp_name'], $videoDir . $videoName);
+    }
+
+    if (!empty($_FILES['audio']['name'])) {
+        $audioName = time() . '_' . basename($_FILES['audio']['name']);
+        $audio_path = 'uploads/audio/' . $audioName;
+        move_uploaded_file($_FILES['audio']['tmp_name'], $audioDir . $audioName);
+    }
 
     // Insert into DB
-    $stmt = $conn->prepare("INSERT INTO media_gallery (name, description, video, image, audio) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare(
+        "INSERT INTO media_gallery (name, description, video, image, audio) 
+         VALUES (?, ?, ?, ?, ?)"
+    );
     $stmt->bind_param("sssss", $name, $description, $video_path, $image_path, $audio_path);
     $stmt->execute();
 
@@ -37,6 +53,7 @@ if(isset($_POST['submit'])){
 ?>
 
 <h2>Add Media</h2>
+
 <form method="post" enctype="multipart/form-data">
     <label>Name:</label><br>
     <input type="text" name="name" required><br><br>

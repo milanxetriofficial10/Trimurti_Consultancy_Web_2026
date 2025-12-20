@@ -22,6 +22,12 @@ $news = $conn->query("SELECT * FROM top_news ORDER BY id DESC");
         </div>
     </div>
 <?php } ?>
+<meta name="description" content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling. | About">
+<meta name="description" content="The Best Consultancy In Nepal.">
+<meta name="keywords" content="Trimurti, Trimurti Educational Consultancy, Trimurti Nepal, Education Consultancy Nepal, Study Abroad Nepal">
+<meta name="author" content="Trimurti Educational Consultancy">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://website.com.np/">
 </div>
 <div class="top-news-bar">
     <div class="top-news-label">Important News</div>

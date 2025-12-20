@@ -2,7 +2,6 @@
  <link rel="icon" href="../img/468819674_122128647596461823_8355324234216025560_n-modified.png" sizes="50x52" type="image/png">
 <!-- SEO Meta : Brand Search -->
 <title>Trimurti Educational Consultancy | Nepal</title>
-
 <meta name="description"
       content="Trimurti Educational Consultancy is a trusted education consultancy in Nepal providing admission guidance, study abroad services, and career counseling.">
 <meta name="keywords"
@@ -15,23 +14,21 @@
 <div class="top-header">
     <div class="top-container">
 
-        <!-- 🇳🇵 Extreme Left : Nepal Live Flag + Contact -->
         <div class="top-left">
             <div class="nepal-flag">
-                <img src="../img /flag/download-removebg-preview.png" alt="Nepal Flag">
+                <img src="../img/flag/download-removebg-preview.png" alt="Nepal Flag">
             </div>
             <a href="tel: 01-5922403" class="phone">
                 📞 01-5922403  
             </a>
         </div>
 
-        <!-- Center : Logo + Name (hidden on mobile) -->
+        
         <div class="top-center">
-            <img src="../img /468819674_122128647596461823_8355324234216025560_n__1_-removebg-preview.png" alt="Logo">
+            <img src="../img/468819674_122128647596461823_8355324234216025560_n__1_-removebg-preview.png" alt="Logo">
             <span class="company-name">📍 Chabahil-07, Kathmandu (Near Pashupati College) </span>
         </div>
 
-        <!-- Right : Country Flags -->
         <div class="top-right flags">
             <a href="#"><img src="../img/flag/united_states_of_america_64.png" alt="USA"></a>
             <a href="#"><img src="../img/flag/new_zealand_64.png" alt="NZ"></a>
@@ -44,21 +41,20 @@
 </div>
 
 <style>
-/* 🌱 Reset */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-/* 🔝 Top Header */
 .top-header{
     width:100%;
     background:#c3d2f5ff;
     border-bottom:1px solid rgba(0,0,0,0.05);
 }
 
-/* 📦 Container */
+
 .top-container{
     max-width:1200px;
     margin:auto;
@@ -69,14 +65,12 @@
     justify-content:space-between;
 }
 
-/* 🇳🇵 Left : Nepal Flag + Phone */
 .top-left{
     display:flex;
     align-items:center;
     gap:10px;
 }
 
-/* 🌊 Live Waving Nepal Flag */
 .nepal-flag img{
     width:40px;
     height: 40px;
@@ -84,7 +78,7 @@
     transform-origin:left center;
 }
 
-/* Flag animation */
+
 @keyframes wave{
     0%{ transform:rotate(0deg); }
     25%{ transform:rotate(2deg); }
@@ -149,7 +143,6 @@
         justify-content:space-between;
     }
 
-    /* ❌ Hide center logo/name on mobile */
     .top-center{
         display:none;
     }
